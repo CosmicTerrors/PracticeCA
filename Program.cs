@@ -7,7 +7,7 @@ namespace PracticeCA
         static void Main(string[] args)
         {
             int exitSignal = 0;
-            Console.WriteLine("Menu:");
+            Console.WriteLine("Menu:\n");
             Console.WriteLine("1. Calculate Quote");
             Console.WriteLine("2. Print Statistics");
             Console.WriteLine("3.Exit");
@@ -75,11 +75,18 @@ namespace PracticeCA
                 case 8:
                 case 9:
                 case 10:
-                    premiumQuote 
+                    premiumQuote += 300;
+                    break;
+                case 11:
+                case 12:
+                    premiumQuote += 400;
+                    break;
                 default:
                     Console.WriteLine("No Quote Possible");
                     break;
             }
+
+            Console.WriteLine("\nYour Premium Quote is : {0}", premiumQuote);
         }
 
         static private void printStats()
