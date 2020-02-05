@@ -7,6 +7,7 @@ namespace PracticeCA
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;    //Prints out Currencies with Euro Symbol
+
             Console.WriteLine("Menu:\n");
             Console.WriteLine("1.Calculate Quote");
             Console.WriteLine("2.Print Statistics");
@@ -15,6 +16,7 @@ namespace PracticeCA
             Console.Write("\nEnter Choice : ");
             int userOption = int.Parse(Console.ReadLine());
             loopMenu(userOption);
+            
         }
 
         static private void calcPremium()
@@ -79,7 +81,7 @@ namespace PracticeCA
         static private void loopMenu(int userChoice)   // Loops The Menu Program
         {
             int exitSignal = 0;
-            while (exitSignal != 3)
+            do
             {
                 switch (userChoice)
                 {
@@ -97,7 +99,17 @@ namespace PracticeCA
                         exitSignal = 3;
                         break;
                 }
-            }
+
+                Console.WriteLine("\nMenu:\n");
+                Console.WriteLine("1.Calculate Quote");
+                Console.WriteLine("2.Print Statistics");
+                Console.WriteLine("3.Exit");
+
+                Console.Write("\nEnter Choice : ");
+                int userOption = int.Parse(Console.ReadLine());
+
+
+            } while (exitSignal != 3);
         }
     }
 }
