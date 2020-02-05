@@ -6,42 +6,24 @@ namespace PracticeCA
     {
         static void Main(string[] args)
         {
-            int exitSignal = 0;
+            Console.OutputEncoding = System.Text.Encoding.UTF8;    //Prints out Currencies with Euro Symbol
             Console.WriteLine("Menu:\n");
-            Console.WriteLine("1. Calculate Quote");
-            Console.WriteLine("2. Print Statistics");
+            Console.WriteLine("1.Calculate Quote");
+            Console.WriteLine("2.Print Statistics");
             Console.WriteLine("3.Exit");
 
-            Console.WriteLine("\nEnter Choice : ");
+            Console.Write("\nEnter Choice : ");
             int userOption = int.Parse(Console.ReadLine());
-
-            while (exitSignal != 3)
-            {
-                switch (userOption)
-                {
-                    case 1:
-                        calcPremium();
-                        break;
-                    case 2:
-                        printStats();
-                        break;
-                    case 3:
-                        exitSignal = 3;
-                        break;
-                    default:
-                        Console.WriteLine("Error");
-                        break;
-                }
-            }
+            loopMenu(userOption);
         }
 
         static private void calcPremium()
         {
-            const double basicPremium = 0.3;
-            const double addPremium = 0.10;
+            const double basicPremium = 0.03;   // Constant 3% basic premium
+            const double addPremium = 0.10;     // Constant 10% additional premium if conditions are met
             double premiumQuote;
 
-            Console.Write("Enter Vehicle Value: ");
+            Console.Write("\nEnter Vehicle Value: ");
             int vehicleValue = int.Parse(Console.ReadLine());
             Console.Write("\nEnter Gender: ");
             string userGender = Console.ReadLine().ToLower();
@@ -50,14 +32,14 @@ namespace PracticeCA
             Console.Write("\nEnter Penalty Points: ");
             int penaltyPoints = int.Parse(Console.ReadLine());
 
-            premiumQuote = vehicleValue * basicPremium;
+            premiumQuote = vehicleValue * basicPremium;        // Calculate The Basic Premium
 
             if (userGender == "male" && userAge >= 18 && userAge <= 25)
             {
-                premiumQuote += premiumQuote * addPremium;
+                premiumQuote += premiumQuote * addPremium;      // Add Extra charge depending on the condition
             }
 
-            switch (penaltyPoints)
+            switch (penaltyPoints)          // Add extra charges depending on the penalty points
             {
                 case 0:
                     break;
@@ -86,12 +68,36 @@ namespace PracticeCA
                     break;
             }
 
-            Console.WriteLine("\nYour Premium Quote is : {0}", premiumQuote);
+            Console.WriteLine("\nYour Premium Quote is : {0:c2}", premiumQuote);
         }
 
         static private void printStats()
         {
+            Console.WriteLine("{0, -10} {1,-10}", "Gender", "Age");
+        }
 
+        static private void loopMenu(int userChoice)   // Loops The Menu Program
+        {
+            int exitSignal = 0;
+            while (exitSignal != 3)
+            {
+                switch (userChoice)
+                {
+                    case 1:
+                        calcPremium();     // Calls the Calculate Method
+                        break;
+                    case 2:
+                        printStats();     // Calls the Print Method
+                        break;
+                    case 3:
+                        exitSignal = 3;   // Stops the Loop and exits out
+                        break;
+                    default:
+                        Console.WriteLine("\nError!");
+                        exitSignal = 3;
+                        break;
+                }
+            }
         }
     }
 }
